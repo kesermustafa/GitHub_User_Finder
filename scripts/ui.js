@@ -74,6 +74,7 @@ export class UI {
       this.profile.innerHTML = "";
       this.input.value = "";
       this.showAlert("Butun veriler silindi", "alert alert-info");
+      this.repoArea.innerHTML = "";
     }
   }
 
@@ -93,20 +94,17 @@ export class UI {
 
   renderProjects(data) {
     data.forEach((repo) => {
-      this.repoArea.innerHTML += `
-         
-     <div class="border row p-3">
-      <div class="col-6">
-          <a href="" target="_blank">${repo.name}</a>
-      </div>
-      <div class="col-6">
-          <span class="badge bg-secondary">Yıldız: ${repo.stargazers_count}</span>
-          <span class="badge bg-primary"> Fork: ${repo.forks_count}</span>
-          <span class="badge bg-success">İzleyenler:${repo.watchers}</span>
-      </div>
-    </div> 
-      
-      `;
+      this.repoArea.innerHTML += `         
+        <div class="border row p-3 mb-3">
+          <div class="col-6">
+              <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+          </div>
+          <div class="col-6">
+              <span class="badge bg-secondary">Yıldız: ${repo.stargazers_count}</span>
+              <span class="badge bg-primary"> Fork: ${repo.forks_count}</span>
+              <span class="badge bg-success">İzleyenler:${repo.watchers}</span>
+          </div>
+        </div> `;
     });
   }
 }
