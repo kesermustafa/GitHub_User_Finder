@@ -11,9 +11,16 @@ export class Github {
     const profileRes = await fetch(
       `https://api.github.com/users/${username}?client_id=${this.client_id}&client_secret=${this.client_secret}`,
     );
+
+    const repoRes = await fetch(
+      `https://api.github.com/users/${username}/repos?client_id=${this.client_id}&client_secret=${this.client_secret}&per_page=${this.per_page}&sort=${this.sort}`,
+    );
+
     // api den aldigimiz cevabi json a cevirdik
-    const data = profileRes.json();
+    const data = await profileRes.json();
+    const repos = await repoRes.json();
+
     //fonksiyonun cagrildigi yere bilgileri gonderdik
-    return data;
+    return { data, repos };
   }
 }

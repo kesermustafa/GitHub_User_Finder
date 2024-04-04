@@ -6,6 +6,6 @@ export const elements = {
   btnClear: document.querySelector("#btnClear"),
   btn: document.querySelector("#btn-dark"),
   body: document.querySelector("#body"),
-  title: document.querySelector("#title"),
+  xtitle: document.querySelector("#x-title"),
   repos: document.querySelector("#repos"),
 };

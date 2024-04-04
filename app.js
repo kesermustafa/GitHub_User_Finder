@@ -23,7 +23,8 @@ const getInput = (e) => {
           ui.showAlert("Kullanici Bulunamadi", "alert alert-danger");
         } else {
           ui.showAlert("Kullanici Bulundu", "alert alert-success");
-          ui.renderProfile(res);
+          ui.renderProfile(res.data);
+          ui.renderProjects(res.repos);
         }
       })
       .catch((err) => console.log(err));

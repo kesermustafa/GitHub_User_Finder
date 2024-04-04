@@ -7,6 +7,7 @@ export class UI {
     this.input = elements.searchInput;
     this.btnDark = elements.btn;
     this.body = elements.body;
+    this.repoArea = elements.repos;
     //olay izleme
     this.buuton.addEventListener("click", this.clearProfile.bind(this));
     this.btnDark.addEventListener("click", this.darkMode.bind(this));
@@ -68,6 +69,7 @@ export class UI {
 
   clearProfile(e) {
     e.preventDefault();
+
     if (confirm("Silmek istediginize emin misiniz?")) {
       this.profile.innerHTML = "";
       this.input.value = "";
@@ -86,6 +88,25 @@ export class UI {
       this.btnDark.textContent = "Light Mode";
     }
 
-    elements.title.classList.toggle("text-dark");
+    elements.xtitle.classList.toggle("text-dark");
+  }
+
+  renderProjects(data) {
+    data.forEach((repo) => {
+      this.repoArea.innerHTML += `
+         
+     <div class="border row p-3">
+      <div class="col-6">
+          <a href="" target="_blank">${repo.name}</a>
+      </div>
+      <div class="col-6">
+          <span class="badge bg-secondary">Yıldız: ${repo.stargazers_count}</span>
+          <span class="badge bg-primary"> Fork: ${repo.forks_count}</span>
+          <span class="badge bg-success">İzleyenler:${repo.watchers}</span>
+      </div>
+    </div> 
+      
+      `;
+    });
   }
 }
