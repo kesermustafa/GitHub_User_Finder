@@ -11,8 +11,10 @@ const getInput = (e) => {
   e.preventDefault();
   const value = elements.searchInput.value;
 
-  if (value == "") return;
-
+  if (value == "") {
+    ui.showAlert("Lutfen Form alanini doldurunuz", "alert alert-warning");
+    return;
+  }
   if (value) {
     github
       .fetchUserData(value)
@@ -21,9 +23,11 @@ const getInput = (e) => {
           ui.showAlert("Kullanici Bulunamadi", "alert alert-danger");
         } else {
           ui.showAlert("Kullanici Bulundu", "alert alert-success");
+          ui.renderProfile(res);
         }
       })
       .catch((err) => console.log(err));
+    return;
   }
 };
 
