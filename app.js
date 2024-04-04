@@ -6,7 +6,6 @@ import { UI } from "./scripts/ui.js";
 const github = new Github();
 
 const ui = new UI();
-ui.showAlert("Kullanici bulunamadi", "alert alert-danger");
 
 const getInput = (e) => {
   e.preventDefault();
@@ -15,7 +14,16 @@ const getInput = (e) => {
   if (value == "") return;
 
   if (value) {
-    github.fetchUserData(value);
+    github
+      .fetchUserData(value)
+      .then((res) => {
+        if (res.message === "Not Found") {
+          ui.showAlert("Kullanici Bulunamadi", "alert alert-danger");
+        } else {
+          ui.showAlert("Kullanici Bulundu", "alert alert-success");
+        }
+      })
+      .catch((err) => console.log(err));
   }
 };
 
